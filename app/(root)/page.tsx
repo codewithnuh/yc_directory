@@ -1,3 +1,12 @@
 export default function Home() {
-  return <p>HOME</p>;
+  return (
+    <>
+      <section className="pink_container">
+        <h1 className="heading">
+          Pitch your startup <br />
+          connect with entrepreneurs
+        </h1>
+      </section>
+    </>
+  );
 }
