@@ -1,26 +1,49 @@
-import { auth } from "@/auth";
+import { auth, signIn, signOut } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Navbar = async () => {
   const session = await auth();
+  console.log(session?.user);
   return (
     <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
       <nav className="flex justify-between items-center">
         <Link href={"/"}>
           <Image src={"/logo.png"} width={144} height={30} alt="YC" />
         </Link>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 text-black">
           {session && session?.user ? (
             <>
               <Link href={"/startup/create"}>Create</Link>
-              <button>
-                <span>Logout</span>
-              </button>
+              <p>{session.user.name}</p>
+              <Image
+                className="rounded-full "
+                src={session.user.image!}
+                width={30}
+                height={30}
+                alt=""
+              />
+              <form
+                action={async () => {
+                  "use server";
+                  await signOut({ redirectTo: "/" });
+                }}
+              >
+                <button type="submit">Logout</button>
+              </form>
             </>
           ) : (
-            <button>Sign In</button>
+            <form
+              action={async () => {
+                "use server";
+                await signIn("github");
+              }}
+            >
+              <button type="submit" className="text-black">
+                LogIn
+              </button>
+            </form>
           )}
         </div>
       </nav>
