@@ -5,9 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
-const StartupCard = ({ post }: { post: StartupTypeCard }) => {
+const StartupCard = ({ post }: { post }) => {
   const {
-    _createdAT: createdAT,
+    _createdAt: createdAt,
     views,
     author: { _id: authorId, name },
     title,
@@ -16,10 +16,11 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
     description,
     category,
   } = post;
+  console.log(post);
   return (
     <li className="startup-card group">
       <div className="flex-between">
-        <p className="startup-card-date">{formatDate(createdAT)}</p>
+        <p className="startup-card-date">{formatDate(createdAt)}</p>
         <div className="flex gap-1.5">
           <EyeIcon className="text-primary size-5" />
           <span className="text-16-medium">{views}</span>

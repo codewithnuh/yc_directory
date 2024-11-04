@@ -1,5 +1,5 @@
 interface StartupTypeCard {
-  _createdAT: Date;
+  _createdAT: string;
   views: number;
   author: {
     _id: number;
