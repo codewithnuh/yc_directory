@@ -172,8 +172,24 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: lib/queries.ts
 // Variable: STARTUPS_QUERIES
-// Query: *[_type=='startup'&& defined(slug.current)] | order(_createdAt desc) {  _id,   author->{_id,name,bio,image},    views,    description,    category,    image,    _createdAt}
+// Query: *[_type=='startup'&& defined(slug.current) && !defined($search) || title match $search || category match $search || author->name match $search] | order(_createdAt desc) {  _id,   author->{_id,name,bio,image},    views,    description,    category,    image,    _createdAt}
 export type STARTUPS_QUERIESResult = Array<{
+  _id: string;
+  author: null;
+  views: null;
+  description: null;
+  category: null;
+  image: string | null;
+  _createdAt: string;
+} | {
+  _id: string;
+  author: null;
+  views: null;
+  description: string | null;
+  category: null;
+  image: null;
+  _createdAt: string;
+} | {
   _id: string;
   author: {
     _id: string;
@@ -192,6 +208,6 @@ export type STARTUPS_QUERIESResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type=='startup'&& defined(slug.current)] | order(_createdAt desc) {\n  _id,\n   author->{_id,name,bio,image},\n    views,\n    description,\n    category,\n    image,\n    _createdAt\n}\n": STARTUPS_QUERIESResult;
+    "*[_type=='startup'&& defined(slug.current) && !defined($search) || title match $search || category match $search || author->name match $search] | order(_createdAt desc) {\n  _id,\n   author->{_id,name,bio,image},\n    views,\n    description,\n    category,\n    image,\n    _createdAt\n}\n": STARTUPS_QUERIESResult;
   }
 }
