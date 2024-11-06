@@ -23,3 +23,7 @@ export const START_UP_BY_ID_QUERY =
     pitch
 }
 `);
+export const START_UP_VIEWS_QUERY =
+  defineQuery(`*[_type=='startup'&& _id==$id][0]{
+  _id,views
+}`);
