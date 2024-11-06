@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**", // Allow all paths from the CDN
       },
+      {
+        protocol: "https",
+        hostname: "plus.unsplash.com", // Use Unsplash's CDN
+        port: "",
+        pathname: "/**", // Allow all paths from the CDN
+      },
     ],
   },
   experimental: {
