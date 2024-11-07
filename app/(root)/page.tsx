@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import SearchBar from "@/components/SearchBar";
 import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 import { STARTUPS_QUERIES } from "@/lib/queries";
@@ -14,7 +15,8 @@ export default async function Home({
     query: STARTUPS_QUERIES,
     params,
   });
-
+  const session = await auth();
+  console.log(session?.id);
   return (
     <>
       <section className="pink_container">
